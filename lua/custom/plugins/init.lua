@@ -3,12 +3,27 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  { 'devsjc/vim-jb' },
+ {
+    'DaikyXendo/nvim-material-icon',
+  },
+
   {
     'windwp/nvim-ts-autotag',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      require('nvim-ts-autotag').setup()
-    end,
   },
+
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("gitsigns").setup()
+      require("scrollbar.handlers.gitsigns").setup()
+    end
+  },
+
+  {
+    "cappyzawa/trim.nvim",
+    opts={}
+  },
+
+  { 'mrjones2014/smart-splits.nvim', build = './kitty/install-kittens.bash' }
 }

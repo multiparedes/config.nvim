@@ -1,4 +1,3 @@
--- Neo-tree is a Neovim plugin to browse the file system
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 
 return {
@@ -6,28 +5,30 @@ return {
   version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-tree/nvim-web-devicons',
+    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
   },
   lazy = false,
   keys = {
-    { '<C-b>', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
-    { '<C-p>', ':Telescope find_files<CR>', desc = 'Find files' },
-    { '<C-f>', ':Telescope live_grep<CR>', desc = 'Search text' },
+    { 'C-b', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
     filesystem = {
+      follow_current_file = {enabled=true},
+      use_libuv_file_watcher = true,
+      close_if_last_window=true,
       window = {
+        width=30,
+        position="left",
         mappings = {
-          ['\\'] = 'close_window',
-          ['l'] = 'open', -- abrir fichero o expandir directorio
-          ['h'] = 'close_node', -- colapsar directorio
-          ['H'] = 'close_all_nodes', -- opcional: colapsar todo
-          ['<CR>'] = 'open', -- Enter también abre
-          ['v'] = 'open_vsplit', -- abrir en split vertical
-          ['s'] = 'open_split', -- abrir en split horizontal
+          ['h'] = 'close_node',
+          ['l'] = 'open',
+          ['<space>'] = {
+            'toggle_node',
+            nowait = false
+          }
         },
       },
-    },
-  },
+    }
+  }
 }
