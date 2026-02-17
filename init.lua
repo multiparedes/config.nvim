@@ -987,3 +987,15 @@ vim.keymap.set('n', "<leader>b", ":Neotree toggle<CR>", {nowait = true, noremap 
 
 vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, { noremap = true, silent = true, desc = 'Rename symbol' })
 vim.keymap.set('n', "<leader>t", ":ToggleTerm size=12<CR>", {nowait = true, noremap = true, silent = true})
+
+vim.api.nvim_create_autocmd("DiagnosticChanged", {
+  callback = function()
+    vim.diagnostic.setqflist({ open = false })
+  end,
+})
+vim.keymap.set("n", "<leader>en", vim.cmd.cnext, { silent = true })
+vim.keymap.set("n", "<leader>ep", vim.cmd.cprev, { silent = true })
+vim.keymap.set("n", "<leader>eo", vim.cmd.copen, { silent = true })
+
+vim.keymap.set("n", "<F1>", "<Nop>")
+vim.api.nvim_create_user_command("Qa", "qa", {})
